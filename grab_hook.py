@@ -36,11 +36,11 @@ def hook(width, length, height, radius, girth, finger_length):
     joint = rounder(height, radius*2, 0)
     join1 = translate([radius*2+girth, length-radius*2+girth+finger_length, 0])\
             (rotate([0, 0, 90])(joint))
-    join2 = translate([- width + girth+2+radius/2 + 1, length-radius * 2+girth+finger_length, 0])\
+    join2 = translate([- width + girth+2+radius/2 -1, length-radius * 2+girth+finger_length, 0])\
             (joint)
-    finger = translate([0, -girth*1.5, 0])\
+    finger = translate([0, -girth*2.5, 0])\
             (cube([girth, finger_length + girth * 2.5 + length, girth]))
-    fingertip = translate([girth/2, -girth*1.5, 0])(cylinder(r=girth / 2, h=height))
+    fingertip = translate([girth/2, -girth*2.5, 0])(cylinder(r=girth / 2, h=height))
     return translate([0, -length-girth-finger_length, 0])\
             (res-inn+tip+finger+fingertip+join1+join2)
 
@@ -52,11 +52,11 @@ def tool(width, length, height, radius, girth, finger_length, hook_length):
     return h+handler+joint
 
 # Units are mm
-hole_width = 20
+hole_width = 25
 hole_length = hole_width
 hook_length = hole_width/1.5
-finger_length = hole_width/1.5
-girth = 5
+finger_length = hole_width*1.5
+girth = 8
 height = girth
 radius = hole_width/4
 
